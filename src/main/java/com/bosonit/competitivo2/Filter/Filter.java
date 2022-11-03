@@ -14,10 +14,24 @@ public class Filter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String redirect = request.getHeader("redirige");
-        System.out.println(redirect);
-        if(redirect.equals("SALTA")) {
-           if(!request.getRequestURI().equals("/salta")) response.sendRedirect("salta");
+//        System.out.println(redirect);
+        if(redirect!= null) {
+            if (redirect.equals("SALTA")) {
+                if (!request.getRequestURI().equals("/salta")) response.sendRedirect("salta");
+            }
         }
+
+        String add = request.getHeader("add");
+        if(add!=null) {
+            if(request.getMethod().equals("POST")) {
+                if(!request.getRequestURI().equals("/modificarbody")) {
+                    response.setStatus(307);
+                    response.addHeader("Location", "modificarbody");
+                }
+            }
+
+        }
+
         filterChain.doFilter(request, response);
     }
 }

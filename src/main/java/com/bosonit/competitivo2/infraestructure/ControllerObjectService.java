@@ -34,4 +34,9 @@ public class ControllerObjectService {
 
         return new ControllerObject(paths, queryparams, headers, origen);
     }
+
+    public String returnBodyModificado(HttpServletRequest request, String texto) {
+
+        return texto;
+    }
 }

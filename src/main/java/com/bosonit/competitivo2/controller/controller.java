@@ -5,6 +5,8 @@ import com.bosonit.competitivo2.model.ControllerObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +37,16 @@ public class controller {
 
         return "he ido a Jump";
 
+    }
+
+    @PostMapping("**")
+    public String nombreModificado(HttpServletRequest request, @RequestBody String texto) {
+        return service.returnBodyModificado(request, texto);
+    }
+
+    @PostMapping("/modificarbody")
+    public String modificarNombre(@RequestBody String texto) {
+        return texto+"MODIFICADO";
     }
 
 
